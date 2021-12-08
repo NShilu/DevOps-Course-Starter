@@ -13,10 +13,29 @@
       <ul class="list-group mb-4">
         {% for item in items %}
         <li>
-        Id: {{item.id}} - {{ item.title }} - {{item.status}}
+          Id: {{item.id}} - {{ item.title }} - {{item.status}}
         </li>
         {% endfor %}
       </ul>
     </div>
   </div>
+
+  <form name= "" action="/addItem" method="post" class="form-example">
+
+    <div class="form-example">
+
+      <label for="title">Enter title of the new item: </label>
+
+      <input type="text" name="title" id="title" required>
+
+    </div>
+
+    <div class="form-example">
+
+      <input type="submit" value="Add">
+
+    </div>
+
+  </form>
+
 {% endblock %}
