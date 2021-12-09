@@ -16,10 +16,7 @@ def index():
 @app.route('/addItem', methods=['POST'])
 
 def index_addItem():
-
     title=request.form.get('title')
-
     add_item(title)
-
     return redirect('/')
 
