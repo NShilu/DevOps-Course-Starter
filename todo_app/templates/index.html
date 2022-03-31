@@ -13,7 +13,15 @@
       <ul class="list-group mb-4">
         {% for item in items %}
         <li>
-          Id: {{item.id}} - {{ item.name }} - {{item.status}}
+          {{ item.title }} - {{item.status}}
+          <form name= "" action="/completeItem" method="post" class="form-example">
+            <div class="form-example">
+              <input type="text" name="id" id="id" value="{{item.id}}" hidden>
+            </div>
+            <div class="form-example">
+              <input type="submit" value="Mark as Done">
+            </div>
+          </form>
         </li>
         {% endfor %}
       </ul>
@@ -21,21 +29,13 @@
   </div>
 
   <form name= "" action="/addItem" method="post" class="form-example">
-
     <div class="form-example">
-
       <label for="title">Enter title of the new item: </label>
-
       <input type="text" name="title" id="title" required>
-
     </div>
-
     <div class="form-example">
-
       <input type="submit" value="Add">
-
     </div>
-
   </form>
 
 {% endblock %}
