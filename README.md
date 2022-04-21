@@ -15,6 +15,13 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-
 ```powershell
 (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py -UseBasicParsing).Content | python -
 ```
+### Trello Setup
+
+---Setup a Trello Account
+https://trello.com/signup
+
+---Generae API Key and Token by following the link below
+https://trello.com/app-key
 
 ## Dependencies
 
@@ -31,6 +38,9 @@ $ cp .env.template .env  # (first time only)
 ```
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
+
+Add API Key and API Server Token which you obtained from Trello to '.env' file. You can add Trello BoardId too to '.env'. Please note, never commit your secreat keys to Git 
+
 
 ## Running the App
 
