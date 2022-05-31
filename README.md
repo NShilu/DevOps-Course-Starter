@@ -41,6 +41,28 @@ The `.env` file is used by flask to set environment variables when running `flas
 
 Add API Key and API Server Token which you obtained from Trello to '.env' file. You can add Trello BoardId too to '.env'. Please note, never commit your secreat keys to Git 
 
+Pytest Fixture has web browser defined and associated drivers are installed, should web browser updates, appropriate drivers will be required
+
+
+## Running Tests
+
+Three Test files are created
+-C:\GitBash\DevOps-Course-Starter\test_ut\test_view_model.py
+-C:\GitBash\DevOps-Course-Starter\test_ete\test_app.py
+-C:\GitBash\DevOps-Course-Starter\test_ete\test_trello_calls.py
+
+To run all tests, please run following command
+
+```bash
+$ poetry run pytest
+```
+
+To run individual test files, please navigate to the file and run the command as below
+below command run tests in test_trello_calls.py file
+
+```bash
+$ poetry run pytest test_ete\test_trello_calls.py 
+```
 
 ## Running the App
 
