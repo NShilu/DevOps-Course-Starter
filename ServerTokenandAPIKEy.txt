@@ -1,2 +1,0 @@
-API Key: d125ed67bd5bf8a077eebe401e1ea819
-Server Token : 806f242cceb649eb3b3703f27696795173b7abee37aa69b7da0c1449e6e1b261
