@@ -6,36 +6,57 @@
     <h1 class="display-4">To-Do App</h1>
     <p class="lead">Just another to-do app.</p>
   </div>
- 
-  <div class="row">
+
+<div class="row">
+    <div class="column" ></div>
     <div class="col-md-12">
-      <h2>Items</h2>
+      <h2>To-Do Items</h2>
       <ul class="list-group mb-4">
-        {% for item in items %}
-        <li>
-          Id: {{item.id}} - {{ item.title }} - {{item.status}}
-        </li>
-        {% endfor %}
+      {% for item in view_model.todo_items %}
+        <li>{{item.title}}</li>
+         {% if item.status!="Completed"%}
+          <form name= "" action="/completeItem" method="post" class="form-example">
+									  
+               <input type="hidden" name="ItemID" id="ItemID" value="{{item.id}}">
+				  
+									  
+               <input type="submit" value="Mark as Done">
+				  
+          </form>
+         {%endif%}                 
+      {% endfor %}
+      </ul>
+      <div class= "column"></div>
+      <h2>Completed Items</h2>
+      <ul class="list-group mb-4">
+      {% for item in view_model.completed_items %}
+        <li>{{item.title}}</li>
+      {% endfor %}
+      </ul>
+      <div class= "column"></div> 
+      <h2>Doing Items</h2>
+      <ul class="list-group mb-4">
+      {% for item in view_model.doing_items %}
+        <li>{{item.title}}</li>
+         {% if item.status!="Completed"%}
+          <form name= "" action="/completeItem" method="post" class="form-example">
+               <input type="hidden" name="ItemID" id="ItemID" value="{{item.id}}">
+               <input type="submit" value="Mark as Done">
+          </form>
+         {%endif%}                 
+      {% endfor %}
       </ul>
     </div>
   </div>
 
   <form name= "" action="/addItem" method="post" class="form-example">
-
     <div class="form-example">
-
-      <label for="title">Enter title of the new item: </label>
-
+      <label for="title">Enter title of the new to-do item: </label>
       <input type="text" name="title" id="title" required>
-
     </div>
-
     <div class="form-example">
-
-      <input type="submit" value="Add">
-
+      <input type="submit" id='AddValue' value="Add">
     </div>
-
-  </form>
+  </form>  
 
 {% endblock %}
