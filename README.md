@@ -46,6 +46,10 @@ Pytest Fixture has web browser defined and associated drivers are installed, sho
 
 ## Running Tests
 
+Two Test Folders have been added:
+-C:\GitBash\DevOps-Course-Starter\test_ut\
+-C:\GitBash\DevOps-Course-Starter\test_ete\
+
 Three Test files are created
 -C:\GitBash\DevOps-Course-Starter\test_ut\test_view_model.py
 -C:\GitBash\DevOps-Course-Starter\test_ete\test_app.py

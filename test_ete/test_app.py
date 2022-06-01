@@ -11,7 +11,6 @@ from selenium.webdriver.common.by import By
 file_path = find_dotenv('.env')
 load_dotenv(file_path, override=True)
 api_key = os.getenv('api_key')
-Consumer_Secret = os.getenv('CONSUMER_SECRET')
 api_server_token = os.getenv('api_server_token')
 
 

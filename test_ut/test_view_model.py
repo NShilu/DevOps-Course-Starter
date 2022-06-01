@@ -10,18 +10,22 @@ a = ViewModel(test_items)
 def test_todo_items():
     return_list = a.todo_items
     for x in return_list:
-     assert x.status == 'To Do'  
+        assert x.status == 'To Do' 
+    assert len(return_list) == 1  
 
 
 def test_doing_items():
     return_list1 = a.doing_items
     for x in return_list1:
-     assert x.status == 'Doing'   
+         assert x.status == 'Doing' 
+    assert len(return_list1) == 1
+      
     
 
 def test_completed_items():
     return_list2 = a.completed_items
     for x in return_list2:
-     assert x.status == 'Completed'   
+        assert x.status == 'Completed'   
+    assert len(return_list2) == 1
 
 
