@@ -65,4 +65,4 @@ def create_app():
         Listid=request.form.get('ItemID')
         complete_card(Listid)
         return redirect('/')
-    return app        
+    return app       
