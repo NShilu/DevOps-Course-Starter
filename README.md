@@ -104,3 +104,18 @@ ansible-playbook ansible_playbook.yml -i ansible_inventory_file
 *when ansible playbook is run, it will prompt 'what is your api server token'
  please insert api server token, this is not purposefully migrated to host node for security 
 
+## How to build and run development and production containers
+
+*to build production container from a multi-stage Dockerfile
+"docker build -t production --target production ."
+*to run the docker container for production
+"docker run --env-file .env -p 8000:8000 -it production"
+(-it runs docker interactively)
+
+*to build development container from a multi-stage Dockerfile
+"docker build -t development --target development ."
+*to run the docker container for development (without mount)
+docker run --env-file .env -p 8000:5000 -it development
+*to run the docker container for development using mount, so Flask automaticlaly reloads when we edit Python files
+"docker run --env-file ./.env -p 5100:5000 --mount type=bind,source="$(pwd)"/todo_app,target=/opt/todo_app development"
+
