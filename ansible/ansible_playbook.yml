@@ -1,0 +1,86 @@
+---
+- name: Install To Do App on new web server
+  hosts: WebServer
+
+  
+
+
+  tasks: 
+    - name: Install Git
+      become: true
+      yum:
+        name: git
+        state: present
+
+    - name: Install Python
+      become: true
+      yum:
+        name: python3
+        state: present
+
+    - name: check to see if Poetry is installed or not
+      shell: /home/ec2-user/.local/bin/poetry --version
+      register: poetry_status
+      ignore_errors: true
+
+    
+    - name: Install Poetry 
+      shell: curl -sSL https://install.python-poetry.org | python3 -
+      when: poetry_status.stderr.find('command not found') != -1
+
+ 
+    - name: Create directory
+      become: true
+      file:
+        path: /opt/todoapp
+        state: directory
+        owner: ec2-user
+        mode: 0775
+        
+  
+    - name: Clone latest code with Git
+      git:
+        repo: https://github.com/NShilu/DevOps-Course-Starter
+        dest: /opt/todoapp/
+        clone: yes
+
+    # - name: install project dependencies
+    #   ansible.builtin.command:
+    #     cmd: ~/.local/bin/poetry install
+    #     chdir: /opt/todoapp
+
+    - name: Create an env file
+      template:
+        src: .env.j2
+        dest: /opt/todoapp/.env
+    
+    - name: copy todoapp service to host
+      become: true
+      copy:
+        src: /home/ec2-user/.ssh/etc/ansible/todoapp.service
+        dest: /etc/systemd/system/todoapp.service
+        owner: ec2-user
+        mode: 0644
+
+    - name: todoapp service
+      become: true
+      systemd:
+        name: todoapp.service
+        state: started
+        enabled: yes
+        daemon_reload: yes
+
+  vars_prompt:
+        
+    - name: api_server_token
+      prompt: what is your api server token
+      private: yes
+    
+
+
+   
+
+  
+
+
+      
