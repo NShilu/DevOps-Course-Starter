@@ -90,32 +90,32 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 ## Running the App on Managed Node by providing commands via Ansible Playbook from Control Node
 
 ### Provision VM through ansible control node
-*set up an SSH key pair
-*Run ssh-keygen to generate an SSH key pair. This will generate it in the ec2-user's `.ssh`
+* set up an SSH key pair
+* Run ssh-keygen to generate an SSH key pair. This will generate it in the ec2-user's `.ssh`
  directory
-*Use the ssh-copy-id tool, specify the host VM's address. In our case its 35.178.233.144
-*For ease, install Remote -SSH extension on VS Code, this will allow you to connect to VMS
+* Use the ssh-copy-id tool, specify the host VM's address. In our case its 35.178.233.144
+* For ease, install Remote -SSH extension on VS Code, this will allow you to connect to VMS
 ssh command you will need is : ssh ec2-user@ipaddress | in our case its ssh ec2-user@35.178.233.144
-*to run ansible playbook, please use the command below
-ansible-playbook ansible_playbook.yml -i ansible_inventory_file
+* to run ansible playbook, please use the command below
+`ansible-playbook ansible_playbook.yml -i ansible_inventory_file`
 
 
 ### api server token
-*when ansible playbook is run, it will prompt 'what is your api server token'
+* when ansible playbook is run, it will prompt 'what is your api server token'
  please insert api server token, this is not purposefully migrated to host node for security 
 
 ## How to build and run development and production containers
 
-*to build production container from a multi-stage Dockerfile
-"docker build -t production --target production ."
-*to run the docker container for production
-"docker run --env-file .env -p 8000:8000 -it production"
-(-it runs docker interactively)
+* to build production container from a multi-stage Dockerfile
+`docker build -t production --target production .`
+* to run the docker container for production
+` docker run --env-file .env -p 8000:8000 -it production `
+` (-it runs docker interactively) `
 
-*to build development container from a multi-stage Dockerfile
-"docker build -t development --target development ."
-*to run the docker container for development (without mount)
-docker run --env-file .env -p 8000:5000 -it development
-*to run the docker container for development using mount, so Flask automaticlaly reloads when we edit Python files
-"docker run --env-file ./.env -p 5100:5000 --mount type=bind,source="$(pwd)"/todo_app,target=/opt/todo_app development"
+* to build development container from a multi-stage Dockerfile
+`docker build -t development --target development .`
+* to run the docker container for development (without mount)
+`docker run --env-file .env -p 8000:5000 -it development`
+* to run the docker container for development using mount, so Flask automaticlaly reloads when we edit Python files
+`docker run --env-file ./.env -p 5100:5000 --mount type=bind,source="$(pwd)"/todo_app,target=/opt/todo_app development`
 
